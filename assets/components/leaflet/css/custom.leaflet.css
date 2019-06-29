@@ -1,0 +1,19 @@
+.leaflet-bar .leaflet-control-zoom-in {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNiIgaGVpZ2h0PSIyNiI+PHBhdGggZmlsbD0iIzY2NiIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMTEgMTVINnYtNGg1VjZoNHY1aDV2NGgtNXY1aC00di01em0wIDAiLz48L3N2Zz4=);
+}
+.leaflet-bar .leaflet-control-zoom-out {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNiIgaGVpZ2h0PSIyNiI+PHBhdGggZmlsbD0iIzY2NiIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNNiAxMWgxNHY0SDZ6Ii8+PC9zdmc+);
+}
+.leaflet-control-layers-toggle {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNiIgaGVpZ2h0PSIyNiI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBmaWxsPSIjMzMzIiBkPSJNMjAgMTQuNWwzIDEuNS0xMCA1LTEwLTUgMy0xLjUgMS41Ljc1TDYgMTZsNyAzLjUgNy0zLjUtMS41LS43NSAxLjUtLjc1em0wIDAiLz48cGF0aCBmaWxsPSIjNEM0QzRDIiBkPSJNMjAgMTEuNWwzIDEuNS0xMCA1LTEwLTUgMy0xLjUgMS41Ljc1TDYgMTNsNyAzLjUgNy0zLjUtMS41LS43NSAxLjUtLjc1em0wIDAiLz48cGF0aCBmaWxsPSIjNjY2IiBkPSJNMTMgMTVsMTAtNS0xMC01LTEwIDUgMTAgNXptMC0xLjVsNy0zLjUtNy0zLjVMNiAxMGw3IDMuNXptMCAwIi8+PC9nPjwvc3ZnPg==);
+}
+.leaflet-control-draw-measure {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNiIgaGVpZ2h0PSIyNiI+PGcgZmlsbD0iIzY2NiIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNNiAxMWgxdjNINnpNOSAxMWgxdjNIOXpNMTIgMTFoMXYzaC0xek0xNSAxMWgxdjNoLTF6TTE4IDEyaDJ2MmgtMnoiLz48cGF0aCBkPSJNMyAxN2gyMHYtN0gzdjd6bTEtNnY1aDE4di01SDR6bTAgMCIvPjwvZz48L3N2Zz4=);
+}
+.fullscreen-icon, .leaflet-container.dark .map-tooltip .close, .leaflet-control-attribution::after, .leaflet-control-layers-toggle, .leaflet-control-zoom-in, .leaflet-control-zoom-out, .leaflet-popup-close-button, .map-tooltip .close, .mapbox-icon {
+    opacity: 1 !important;
+}
+.leaflet-bar .leaflet-control-zoom-in, .leaflet-bar .leaflet-control-zoom-out, .leaflet-control-layers-toggle {
+    background-position: center;
+    background-size: 26px;
+}

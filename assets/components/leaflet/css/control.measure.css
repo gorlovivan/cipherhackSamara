@@ -1,0 +1,5 @@
+.leaflet-control-draw-measure {
+    background-image: url(/scripts/leaflet/images/measure-control.svg);
+    background-position: 50%;
+    background-size: 80% 80%;
+}
