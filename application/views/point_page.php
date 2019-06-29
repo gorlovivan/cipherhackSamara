@@ -20,7 +20,7 @@ $status = convert_status($point->item_status);
                 <div class="row">
                     <div class="col-md-8">
                         <h1 class="no-margin"><?= $point->item_name ?></h1>
-                        <h3><?= $subcat[$point->item_subcategory]->item_name ?></h3>
+                        <h3><?= $point->item_address ?></h3>
                     </div>
                     <div class="col-md-4 align-right">
                         <br>
@@ -78,7 +78,6 @@ $status = convert_status($point->item_status);
                 <div class="row no-margin">
                     <div class="col-md-8" style="padding-right: 15px;">
                         <div class="box-content">
-                            <h3><?= $point->item_address ?></h3>
                             <p><?= $point->item_message ?></p>
                         </div>
                     </div>
@@ -116,8 +115,8 @@ $status = convert_status($point->item_status);
 
                     var placeIcon = L.icon({
                         iconUrl: '/assets/img/points/<?= $point->item_icon ?>',
-                        iconSize: [35, 37],
-                        iconAnchor: [17, 37],
+                        iconSize: [20, 23],
+                        iconAnchor: [10, 23],
                     });
 
                     var osm = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {

@@ -55,12 +55,12 @@ class Map extends CI_Controller {
 
         $point = array(
             'item_category'    => filter($this->input->post('category', TRUE), 'str', 30),
-            'item_subcategory' => filter($this->input->post('subcat', TRUE), 'str', 30),
+            'item_message'     => filter($this->input->post('message', TRUE), 'str', 30),
             'item_latitude'    => filter($this->input->post('latitude', TRUE), 'float'),
             'item_longitude'   => filter($this->input->post('longitude', TRUE), 'float')
         );
 
-        if ( ! $point['item_category'] || ! $point['item_subcategory'] ||
+        if ( ! $point['item_category'] || ! $point['item_message'] ||
              ! $point['item_latitude'] || ! $point['item_longitude']) {
             log_write(LOG_WARNING, 'Point object create error, USER: ' . $this->auth->get_user_id(), __METHOD__);
 
@@ -95,7 +95,7 @@ class Map extends CI_Controller {
             return redirect(config_item('site_url'));
         }
 
-        $item = filter($this->uri->segment(3), 'str', 30);
+        $item = filter($this->uri->segment(3), 'str', 40);
 
         if ( ! $item) {
             redirect(config_item('site_url'));

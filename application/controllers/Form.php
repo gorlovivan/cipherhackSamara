@@ -17,7 +17,6 @@ class Form extends CI_Controller {
      */
     var $TPLVAR = array();
 
-
     function __construct() {
         parent::__construct();
 
@@ -61,7 +60,6 @@ class Form extends CI_Controller {
         $this->TPLVAR['data']     = $point;
         $this->TPLVAR['photos']   = $this->media->get_by_point($point->item_id);
         $this->TPLVAR['category'] = $this->category->get_all();
-        $this->TPLVAR['subcat']   = $this->category->get_subcategory($point->item_category);
         
         $this->load->view('form', $this->TPLVAR);
     } // function point()
@@ -252,10 +250,9 @@ class Form extends CI_Controller {
             'item_latitude'    => filter($this->input->post('item_latitude', TRUE), 'float'),
             'item_longitude'   => filter($this->input->post('item_longitude', TRUE), 'float'),
             'item_category'    => filter($this->input->post('item_category', TRUE), 'str', 30),
-            'item_subcategory' => filter($this->input->post('item_subcategory', TRUE), 'str', 30),
             'item_address'     => filter($this->input->post('item_address', TRUE), 'str', 200),
             'item_message'     => filter($this->input->post('item_message', TRUE), 'text', 5000),
-            'item_status'      => STATUS_CREATED,
+            'item_status'      => STATUS_INWORK,
         );
 
         $this->point->update($item, $save);
@@ -283,7 +280,8 @@ class Form extends CI_Controller {
         $this->backend->init($config);
 
         $this->point->update_status($item, STATUS_SENT);
-
+        $this->point->update_status($item, STATUS_INWORK);
+/*
         $this->backend->endpoint('send_point', array(
             'person' => array(
                 'family'        => $this->TPLVAR['user']->user_lastname,
@@ -302,7 +300,7 @@ class Form extends CI_Controller {
                 'topic' => ''
             )
         ));
-        
+        */
         return $this->output->set_output(json_encode(array(
             'code' => 'luck',
             'item' => $item

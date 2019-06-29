@@ -31,7 +31,7 @@ class Logout extends CI_Controller {
         $this->auth->logout();
         $this->user->clear_session();
 
-        redirect('/');
+        redirect(config_item('site_url'));
     } // function index()
 }
 

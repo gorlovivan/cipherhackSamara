@@ -25,7 +25,7 @@ $config['smtp_crypto'] = 'ssl';
  * Site url
  * @var string
  */
-$config['site_url'] = 'http://pasler.miksrv.ru/';
+$config['site_url'] = 'http://hakaton.miksrv.ru/';
 
 /**
  * @var integer

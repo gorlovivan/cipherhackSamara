@@ -303,8 +303,8 @@ MapUtils.Methods = {
             L.geoJson(json, {
                 pointToLayer: function(feature, latlng) {
                     var smallIcon = L.icon({
-                        iconSize: [35, 37],
-                        iconAnchor: [17, 37],
+                        iconSize: [20, 23],
+                        iconAnchor: [10, 23],
                         iconUrl: feature.options.iconImageHref
                     });
                     return L.marker(latlng, {icon: smallIcon, title: feature.properties.hintContent});
@@ -386,15 +386,17 @@ MapUtils.Methods = {
             $(this).children().removeClass("fa-check").addClass("fa-spinner fa-spin");
 
             var category  = $('#point-category').val(),
-                subcat    = $('#point-subcategory').val(),
+                message   = $('#message').val(),
                 latitude  = e.latlng.lat.toPrecision(8),
                 longitude = e.latlng.lng.toPrecision(8);
 
-            if ( ! category || ! subcat || ! latitude || ! longitude) {
+            if ( ! category || ! message || ! latitude || ! longitude) {
                 $("[data-role='cancelpoint']").attr('disabled', false);
                 $(this).attr('disabled', false);
                 $(this).children().removeClass("fa-spinner fa-spin").addClass("fa-check");
                 App.Methods.Alert('Заполнены не все обязательные поля - укажите название, описание и попробуйте заново');
+                
+                return ;
             }
 
             // Отправляем данные
@@ -402,7 +404,7 @@ MapUtils.Methods = {
                 '/' + page_url + '/create',
                 {
                     category: category,
-                    subcat: subcat,
+                    message: message,
                     latitude: latitude,
                     longitude: longitude
                 },

@@ -1,10 +1,11 @@
 */config/development
-*/logs/*
+!*/logs/*
 !*/logs/index.html
 */cache/*
 !*/cache/index.html
 !*/cache/.htaccess
-*/uploads/*
+!*/uploads/*
+*/nbproject/*
 
 user_guide_src/build/*
 user_guide_src/cilexer/build/*

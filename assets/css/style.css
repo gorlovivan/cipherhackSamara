@@ -43,6 +43,7 @@ p {
 }
 .wrapper {
     max-width: 100%;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 0 15px;
 }
@@ -167,7 +168,7 @@ h3.info {
 .create-point-form .button-group {
     text-align: right;
 }
-.create-point-form .btn {
+.create-point-form .btn:last-of-type {
     margin-left: 10px;
 }
 
@@ -1026,7 +1027,7 @@ option {
 
 .btn {
     font-size: 15px;
-    font-weight: 900;
+    font-weight: 400;
     position: relative;
     display: inline-block;
     padding: 11px 20px;
@@ -1049,6 +1050,7 @@ option {
 .btn:hover {
     text-decoration: none;
     box-shadow: 0 0 10px rgba(0,0,0,.2);
+    color: inherit;
 }
 .btn-small {
     padding: 2px 4px !important;

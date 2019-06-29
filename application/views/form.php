@@ -27,14 +27,6 @@ include_once VIEWPATH . 'sections/header.inc.php';
                                 </select>
                             </div>
                             <br>
-                            <div class="form-group">
-                                <select id="point-subcategory" name="item_subcategory" class="form-control">
-                                    <?php foreach ($subcat as $val): ?>
-                                    <option value="<?= $val->item_id ?>"<?= ($data->item_subcategory == $val->item_id) ? " selected" : NULL ?>><?= $val->item_name ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <br>
                             <dl class="flt-lbl-box button-inline">
                                 <dt>Адрес</dt>
                                 <dd>
@@ -91,7 +83,7 @@ include_once VIEWPATH . 'sections/header.inc.php';
                     </div>
                 </div>
                 <div class="fright">
-                    <a href="javascript://" class="btn btn-success" data-role="save"><i class="fa fa-check"></i> Сохранить</a> 
+                    <a href="javascript://" class="btn btn-primary" data-role="save"><i class="fa fa-check"></i> Сохранить</a> 
                     <a href="javascript://" class="btn btn-warning" data-role="cancel">Отмена</a>
                 </div>
                 <div class="clear"></div>

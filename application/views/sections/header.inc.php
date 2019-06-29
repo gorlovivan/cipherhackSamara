@@ -90,7 +90,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <ul class="jq-dropdown-menu">
                                                 <li><a href="/points/list/?user=<?= $user->user_id ?>" title="Мои обращения">Мои обращения</a></li>
                                                 <li class="dropdown-divider"></li>
-                                                <li><a href="/logout/" title="Выйти из системы">Выход</a></li>
+                                                <li><a href="/logout" title="Выйти из системы">Выход</a></li>
                                             </ul>
                                         </div>
                                         <?php else: ?>
