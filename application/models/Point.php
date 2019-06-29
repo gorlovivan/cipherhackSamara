@@ -35,6 +35,9 @@ class Point extends CI_Model {
         return $this->db->get(DB_SUBCAT)->result();
     }
 
+    function get_geoarea() {
+        return $this->db->get('map_areas')->result();
+    }
 
     function get_states_list($item_point) {
         return $this->db->where('item_point', $item_point)->order_by('item_timestamp', 'DESC')->get(DB_STATE)->result();
@@ -109,7 +112,7 @@ class Point extends CI_Model {
 
     function get_list($limit = 20, $offset = 0, $param = array()) {
         $this->db
-             ->select(DB_POINT . '.*, ' . DB_CATEGORY . '.item_id as category_id, ' . DB_CATEGORY . '.item_name, ' . DB_CATEGORY . '.item_icon, ' . DB_CATEGORY . '.item_short, ' . DB_PHOTO . '.item_filename')
+             ->select(DB_POINT . '.*, ' . DB_CATEGORY . '.item_id as category_id, ' . DB_CATEGORY . '.item_name, ' . DB_CATEGORY . '.item_icon, ' . DB_PHOTO . '.item_filename')
              ->join(DB_CATEGORY, DB_CATEGORY . '.item_id = ' . DB_POINT . '.item_category', 'left')
              ->join(DB_PHOTO, DB_PHOTO . '.item_point = ' . DB_POINT . '.item_id', 'left');
 

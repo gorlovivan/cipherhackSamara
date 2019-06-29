@@ -134,7 +134,7 @@ MapUtils.Var = {
     mapEditMode: false, // Режим редактирования карты
     layergroups: [], // Группы слоев карты,
     formTemplate: '', // Переменная шаблона формы создания точки
-    layerAREA: new L.LayerGroup(), // слой карты с интересными местами
+    layerDraw: new L.FeatureGroup()
 };
 MapUtils.Methods = {
     /**
@@ -263,12 +263,31 @@ MapUtils.Methods = {
         }, {
             'Рельеф местности': hmap,
             'Кадастровая карта': kadastr,
-            'Территории УК': MapUtils.Var.layerAREA,
         }, {
             collapsed: true
         }));
 
         MapUtils.Var.mapObject.addControl(new L.Control.measureControl());
+        MapUtils.Var.mapObject.addControl(new L.Control.Draw({
+            draw: {
+                position: 'topleft',
+                polygon: true,
+                polyline: {
+                    metric: true,
+                    shapeOptions: {
+                        color: 'blue',
+                        weight: 4
+                    }
+                },
+                circle: false,
+                rectangle: false,
+            },
+            edit: {
+                featureGroup: MapUtils.Var.layerDraw
+            }
+        }));
+
+        MapUtils.Var.mapObject.on('draw:created', MapUtils.Methods.eventDrawCreated);
 
         // Получить geoJson объекты
         MapUtils.Methods.getGeoJson((typeof status != 'undefined' && status) ? status : null);
@@ -288,40 +307,57 @@ MapUtils.Methods = {
 
         // Добавление события перемещение по карте
         MapUtils.Var.mapObject.on('moveend', this.eventMoveEnd);
-        
-        // Добавление события загрузки слоя интересных мест
-        MapUtils.Var.mapObject.on('overlayadd', this.eventOverlayAdd);
     }, // InitMap: function()
     /**
-     * Событие, возникающее при включении оверлея
-     * @param {type} e
-     * @returns {undefined}
+     * Обновление данных при окончании рисования объектов
+     * @param object e
+     * @returns void
      */
-    eventOverlayAdd: function(e) {
-        if (e.name == "Территории УК" && 
-            MapUtils.Var.layerAREA.getLayers().length == 0)
-            MapUtils.Methods._loadArea();
-    },
-    /**
-     * Загрузка интересных мест
-     * @returns object
-     */
-    _loadArea: function() {
-        jQuery.getJSON('/map/get_geoarea', function(json) {
-            L.geoJson(json, {
-                onEachFeature: function (feature, featureLayer) {
-                    MapUtils.Var.layerAREA.addLayer(featureLayer);
-                    featureLayer.bindPopup(function (layer) {
-                        return $.ajax({
-                            url: '/map/' + layer.feature.properties.objectid, 
-                            async: false,
-                            type: "GET",
-                        }).responseText;
-                    });
-                }
-            });
+    eventDrawCreated: function(e) {
+        var type  = e.layerType,
+            layer = e.layer;
+
+        if (type === 'polygon') {
+            MapUtils.Var.layerDraw.clearLayers();
+            MapUtils.Var.layerDraw.addLayer(e.layer);
+        }
+
+        var shapes = [];
+        shapes = {
+            "type": "FeatureCollection",
+            "features": []
+        };
+        
+        MapUtils.Var.layerDraw.eachLayer(function (layer) {
+            shapes["features"].push(MapUtils.Methods.geojson_line(layer));
         });
-    }, // _loadPlaces: function()
+
+console.log(JSON.stringify(shapes));
+
+        MapUtils.Var.layerDraw.addLayer(layer);
+    }, // eventDrawCreated: function(e)
+    /**
+     * Преобразование объека polyline в geojson string
+     * @return string
+     */
+    geojson_line: function(o) {
+        var temp_coords = [];
+        $.each(o.getLatLngs(), function(index,value) {
+            for (var i = 0; i < value.length; i++) {
+                temp_coords.push([value[i].lng.toPrecision(7), value[i].lat.toPrecision(7)]);
+            }
+        });
+        
+        result = {
+            "type": "Feature",
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": temp_coords
+            },
+        };
+        
+        return result;
+    }, // geojson_line: function(o)
     /**
      * Обращение к серверу и загрузка geoJson объектов
      * @returns void

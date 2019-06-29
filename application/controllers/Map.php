@@ -55,7 +55,7 @@ class Map extends CI_Controller {
 
         $point = array(
             'item_category'    => filter($this->input->post('category', TRUE), 'str', 30),
-            'item_message'     => filter($this->input->post('message', TRUE), 'str', 30),
+            'item_message'     => filter($this->input->post('message', TRUE), 'str', 5000),
             'item_latitude'    => filter($this->input->post('latitude', TRUE), 'float'),
             'item_longitude'   => filter($this->input->post('longitude', TRUE), 'float')
         );
@@ -172,6 +172,46 @@ class Map extends CI_Controller {
         return $this->output->set_output(json_encode($objects));
     } // function get_geojson()
 
+    
+    function get_geoarea() {
+        if ( ! $this->input->is_ajax_request()) {
+            return redirect(config_item('site_url'));
+        }
+        
+        $objects = array('type' => 'FeatureCollection');
+
+        
+        $point_list = $this->point->get_geoarea();
+        
+        foreach ($point_list as $val) {
+            $temp  = json_decode($val->item_geojson);
+            $coord = array();
+
+            foreach ($temp->features[0]->geometry->coordinates as $it) {
+                $coord[] = array((float) $it[0], (float) $it[1]);
+            }
+
+            $objects['features'][] = array(
+                'type' => 'Feature',
+                'geometry' => array(
+                    'type' => 'Polygon',
+                    'coordinates' => array($coord),
+                ),
+                'properties' => array(
+                    'objectid'    => $val->item_id,
+                ),
+                'style' => array(
+			"stroke" => "#555555",
+			"stroke-width" => 2,
+			"stroke-opacity" => 1,
+			"fill" => "#00aa22",
+			"fill-opacity" => 0.5
+                )
+            );
+        }
+
+        return $this->output->set_output(json_encode($objects));
+    }
     
     /**
      * Return JSON subcategory array

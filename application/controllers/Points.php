@@ -33,7 +33,7 @@ class Points extends CI_Controller {
      * Index page redirect to points list page
      * @return type
      */
-    function index() {       
+    function index() {
         return redirect(config_item('site_url') . 'points/list');
     } // function index()
 
@@ -88,8 +88,9 @@ class Points extends CI_Controller {
             if (empty($user_data) || ! isset($user_data->user_id)) {
                 redirect(config_item('site_url') . '404');
             }
-            
-            $param['author'] = $user_data->user_id;
+
+            $param['author']   = $user_data->user_id;
+            $param['statuses'] = NULL;
         } else {
             $param['statuses'] = array(STATUS_INWORK, STATUS_DONE, STATUS_PLANNED);
         }
@@ -105,12 +106,20 @@ class Points extends CI_Controller {
 
         $page = ($this->uri->segment(3)) ? filter($this->uri->segment(3), 'int', 5) : 0;
 
+        $this->load->model('media');
+        
         $this->pagination->initialize($config);
 
         $this->TPLVAR['title']  = 'Список всех проблем';
         $this->TPLVAR['points'] = $this->point->get_list(config_item('point_list_per_page'), $page, $param);
         $this->TPLVAR['pages']  = $this->pagination->create_links();
         $this->TPLVAR['author'] = $user_data;
+
+        $this->TPLVAR['count_user']    = $this->user->get_count();
+        $this->TPLVAR['count_point']   = $this->point->get_count($param['statuses']);
+        $this->TPLVAR['count_process'] = $this->point->get_count(array(STATUS_INWORK));
+        $this->TPLVAR['count_done']    = $this->point->get_count(array(STATUS_DONE));
+        $this->TPLVAR['count_photo']   = $this->media->get_count();
 
         $this->load->view('points', $this->TPLVAR);
     } // function list()

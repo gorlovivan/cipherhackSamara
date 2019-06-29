@@ -43,7 +43,7 @@ p {
 }
 .wrapper {
     max-width: 100%;
-    max-width: 1400px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 0 15px;
 }
@@ -326,9 +326,8 @@ section .header p {
 }
 
 .statistics {
-    margin: 70px 0;
     background: rgb(245, 245, 245);
-    padding: 80px 0;
+    margin-top: -50px;
 }
 
 .fullmap {

@@ -23,7 +23,7 @@ class Logout extends CI_Controller {
      */
     function index() {
         if ( ! $this->auth->is_login()) {
-            return redirect('/');
+            return redirect(config_item('site_url'));
         }
 
         log_write(LOG_INFO, 'User: ' . $this->auth->get_user_id(), __METHOD__);

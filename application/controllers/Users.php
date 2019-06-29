@@ -26,7 +26,7 @@ class Users extends CI_Controller {
         }
         
         if ($this->auth->my_role() < ROLE_MODERATOR) {
-            redirect('/');
+            redirect(config_item('site_url'));
         }
         
         $this->load->model('advert');
@@ -54,7 +54,7 @@ class Users extends CI_Controller {
      */
     function create() {
       if ( ! $this->input->is_ajax_request()) {
-          return redirect('/');
+          return redirect(config_item('site_url'));
       }
 
       return $this->output->set_output(json_encode(array(
@@ -68,7 +68,7 @@ class Users extends CI_Controller {
      */
     function adverts() {
         if ( ! $this->input->is_ajax_request()) {
-            return redirect('/');
+            return redirect(config_item('site_url'));
         }
       
         $user = filter($this->uri->segment(3), 'str', 20);
@@ -97,7 +97,7 @@ class Users extends CI_Controller {
      */
     function deactivate() {
         if ( ! $this->input->is_ajax_request()) {
-            return redirect('/');
+            return redirect(config_item('site_url'));
         }
 
         $user   = filter($this->uri->segment(3), 'str', 20);
@@ -137,7 +137,7 @@ class Users extends CI_Controller {
      */
     function add() {
         if ( ! $this->input->is_ajax_request()) {
-            return redirect('/');
+            return redirect(config_item('site_url'));
         }
 
         $login = filter($this->input->post('login', TRUE), 'str', 40);

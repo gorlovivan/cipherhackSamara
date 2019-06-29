@@ -31,7 +31,7 @@ $status = convert_status($point->item_status);
             </div>
             <div class="card-block">
                 <h3>
-                    <a href="/points/id/<?= $point->item_id ?>" title="<?= $point->item_name ?>"><?= $point->item_short ? $point->item_short : $point->item_name ?></a>
+                    <a href="/points/id/<?= $point->item_id ?>" title="<?= $point->item_name ?>"><?= $point->item_name ?></a>
                 </h3>
                 <p class="datetime"><i class="fa fa-calendar" aria-hidden="true"></i> <?= formatdate((int) $point->item_timestamp) ?>&nbsp;&nbsp; &middot; &nbsp;&nbsp;<i class="fa fa-eye" aria-hidden="true"></i> <?= $point->item_views ?></p>
                 <p class="address"><?= $point->item_address ?></p>

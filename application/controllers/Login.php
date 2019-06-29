@@ -24,7 +24,7 @@ class Login extends CI_Controller {
      */
     function index() {
         if ($this->auth->is_login()) {
-            return redirect('/');
+            return redirect(config_item('site_url'));
         }
 
         $this->load->view('login');
@@ -37,7 +37,7 @@ class Login extends CI_Controller {
      */
     function auth() {
         if ( ! $this->input->is_ajax_request()) {
-            return redirect('/');
+            return redirect(config_item('site_url'));
         }
 
         session_regenerate_id();

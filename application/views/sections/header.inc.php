@@ -64,15 +64,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <a href="/" <?= $this->uri->segment(1) == 'map' ? 'class="active"' : NULL ?> title="">Районы</a>
                                     </li>
                                     <li>
-                                        <a href="/points/list" <?= ($this->uri->segment(1) == 'points' && $this->uri->segment(2) == 'list') ? 'class="active"' : NULL ?> title="">Обращения</a>
+                                        <a href="/points/list" <?= ($this->uri->segment(1) == 'points' && $this->uri->segment(2) == 'list' && ! $this->input->get('user')) ? 'class="active"' : NULL ?> title="">Обращения</a>
                                     </li>
                                     <li>
-                                        <a href="/points/my" <?= ($this->uri->segment(1) == 'points' && $this->uri->segment(2) == 'my') ? 'class="active"' : NULL ?> title="">Мои заявки</a>
+                                        <a href="/points/list/?user=<?= $user->user_id ?>" <?= ($this->uri->segment(1) == 'points' && $this->auth->get_user_id() == $this->input->get('user')) ? 'class="active"' : NULL ?> title="">Мои заявки</a>
                                     </li>
                                     <li>
                                         <a href="/uk/" <?= ($this->uri->segment(1) == 'uk') ? 'class="active"' : NULL ?> title="">Рейтинг УК</a>
                                     </li>
-                                    <li>
+                                    <li> 
                                         <button class="btn btn-success" data-role='add-place' onclick="location.href='/<?= $this->auth->is_login() ? 'map#create' : 'login' ?>'">Создать обращение</button>
                                     </li>
                                 </ul>

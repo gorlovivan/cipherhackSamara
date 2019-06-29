@@ -24,7 +24,7 @@ class Recovery extends CI_Controller {
      */
     function index() {
         if ($this->auth->is_login()) {
-            return redirect('/');
+            return redirect(config_item('site_url'));
         }
 
         $this->load->view('recovery');
@@ -36,19 +36,19 @@ class Recovery extends CI_Controller {
         $mail = filter($this->input->get('user', TRUE), 'str', 50);
         
         if ($this->auth->is_login() || ! $pass || ! $mail) {
-            return redirect('/');
+            return redirect(config_item('site_url'));
         }
         
         $user = $this->user->get_by_email($mail);
         
         if ( ! isset($user->user_id) || empty($user->user_id)) {
             log_write(LOG_WARNING, 'No user found (' . $mail . ')', __METHOD__);
-            redirect('/');
+            redirect(config_item('site_url'));
         }
         
         if ($pass !== $this->auth->generate_user_hash($user->user_password . date('d') . date('m'))) {
             log_write(LOG_WARNING, 'No user code does not match (' . $mail . ')', __METHOD__);
-            redirect('/');
+            redirect(config_item('site_url'));
         }
 
         $password = create_password();
@@ -70,7 +70,7 @@ class Recovery extends CI_Controller {
         $email = filter($this->input->get('email', TRUE), 'str', 50);
 
         if ($this->auth->is_login() || ! $this->input->is_ajax_request()) {
-            return redirect('/');
+            return redirect(config_item('site_url'));
         }
 
         $user = $this->user->get_by_email($email);

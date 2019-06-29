@@ -13,6 +13,38 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 include_once VIEWPATH . 'sections/header.inc.php';
 ?>      <main>
+            <?php if (empty($author) || ! isset($author->user_id)): ?>
+            <section class="statistics">
+                <div class="row main-stat wrapper">
+                    <div class="col-md-1 no-margin">&nbsp;</div>
+                    <div class="col-md-2 no-margin">
+                        <div><i class="fa fa-user-o" aria-hidden="true"></i></div>
+                        <div class="number"><?= $count_user ?></div>
+                        <p>пользователей</p>
+                    </div>
+                    <div class="col-md-2 no-margin">
+                        <div><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+                        <div class="number"><a href="/map" title=""><?= $count_point ?></a></div>
+                        <p>создано обращений</p>
+                    </div>
+                    <div class="col-md-2 no-margin">
+                        <div><i class="fa fa-wrench" aria-hidden="true"></i></div>
+                        <div class="number"><a href="/map?status=<?= STATUS_INWORK ?>" title=""><?= $count_process ?></a></div>
+                        <p>обращений в работе</p>
+                    </div>
+                    <div class="col-md-2 no-margin">
+                        <div><i class="fa fa-check" aria-hidden="true"></i></div>
+                        <div class="number"><a href="/map?status=<?= STATUS_DONE ?>" title=""><?= $count_done ?></a></div>
+                        <p>выполнено обращений</p>
+                    </div>
+                    <div class="col-md-2 no-margin">
+                        <div><i class="fa fa-picture-o" aria-hidden="true"></i></div>
+                        <div class="number"><?= $count_photo ?></div>
+                        <p>загружено фотографий</p>
+                    </div>
+                    <div class="col-md-1 no-margin">&nbsp;</div>
+                </div>
+            </section>
             <section class="fullmap">
                 <div class="overlay"></div>
                 <div class="wrapper center">
@@ -21,6 +53,7 @@ include_once VIEWPATH . 'sections/header.inc.php';
                     <div><a href="/map" title="Карта обращений граждан">Перейти на карту обращений <i class="fa fa-arrow-right" aria-hidden="true"></i></a></div>
                 </div>
             </section>
+            <?php endif; ?>
             <section class="wrapper">
                 <div class="header">
                     <?php if ( ! empty($author) && isset($author->user_id)): ?>
@@ -39,6 +72,8 @@ include_once VIEWPATH . 'sections/header.inc.php';
                 </div>
                 <div class="clear"></div>
                 <div class="pagination"><?= $pages ?></div>
+                <?php else: ?>
+                <div style="margin: 60px 0; text-align: center; min-height:200px;">Пользователь еще не добавил ни одной проблемы</div>
                 <?php endif; ?>
             </section>
         </main>

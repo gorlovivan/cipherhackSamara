@@ -24,7 +24,7 @@ class Registration extends CI_Controller {
      */
     function index() {
         if ($this->auth->is_login()) {
-            return redirect('/');
+            return redirect(config_item('site_url'));
         }
 
         $this->load->view('registration');
@@ -38,7 +38,7 @@ class Registration extends CI_Controller {
         $user = $this->auth->get_user();
 
         if ( ! $this->input->is_ajax_request() || $user->user_confirm) {
-            return redirect('/');
+            return redirect(config_item('site_url'));
         }
 
         $this->load->helper('cookie');
@@ -72,7 +72,7 @@ class Registration extends CI_Controller {
         $data = $this->user->get_by_id($user);
 
         if ($data->user_confirm) {
-            redirect('/');
+            redirect(config_item('site_url'));
         }
 
         if (empty($data) || ! $data->user_id) {
@@ -98,7 +98,7 @@ class Registration extends CI_Controller {
      */
     function create() {
         if ( ! $this->input->is_ajax_request() || $this->auth->is_login()) {
-            return redirect('/');
+            return redirect(config_item('site_url'));
         }
 
         $login    = filter($this->input->post('login', TRUE), 'str', 40);
