@@ -53,7 +53,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <a href="/points/list" <?= ($this->uri->segment(1) == 'points' && $this->uri->segment(2) == 'list' && ! $this->input->get('user')) ? 'class="active"' : NULL ?> title="">Обращения</a>
                             </li>
                                     <li>
-                                        <a href="/uk/" <?= ($this->uri->segment(1) == 'uk') ? 'class="active"' : NULL ?> title="">Рейтинг УК</a>
+                                        <a href="/uk/" <?= ($this->uri->segment(1) == 'uk') ? 'class="active"' : NULL ?> title="">Рейтинг</a>
                                     </li>
                             <?= $this->auth->is_login() == TRUE ? '<li class="menu-divider"></li><li><a href="/logout/">Выход</a></li>' : '' ?>
                         </ul>
@@ -79,7 +79,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     </li>
                                     <?php endif; ?>
                                     <li>
-                                        <a href="/uk/" <?= ($this->uri->segment(1) == 'uk') ? 'class="active"' : NULL ?> title="">Рейтинг УК</a>
+                                        <a href="/uk/" <?= ($this->uri->segment(1) == 'uk') ? 'class="active"' : NULL ?> title="">Рейтинг</a>
                                     </li>
                                     <li> 
                                         <button class="btn btn-success" data-role='add-place' onclick="location.href='/<?= $this->auth->is_login() ? 'map#create' : 'login' ?>'">Создать обращение</button>

@@ -174,7 +174,7 @@ h3.info {
 
 /* MAP POINT INFO */
 .map-page {
-    margin: 56px 0 0 0;
+    margin: 51px 0 0 0;
 }
 .map-page section {
     margin-bottom: 0;
@@ -261,7 +261,7 @@ h3.info {
     position: absolute;
     left: 10px;
     z-index: 9;
-    bottom: 35px;
+    bottom: -25px;
     padding: 15px;
 }
 .category-list {
@@ -2010,7 +2010,7 @@ ul.newsticker span {
         width: 25%;
     }
 
-    .desktop-menu .logo, .desktop-menu .main {
+    .desktop-menu .main {
         display: none;
     }
     .nav-toggle {
