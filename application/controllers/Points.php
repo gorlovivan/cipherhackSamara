@@ -48,7 +48,12 @@ class Points extends CI_Controller {
             redirect(config_item('site_url') . 'points/list');
         }
 
+        if ( ! $this->auth->is_login() && isset($_GET['admin'])) {
+            redirect(config_item('site_url') . 'points/id/' . $item);
+        }
+
         $this->load->model('media');
+        $this->load->model('category');
 
         $subcat = $this->point->get_subcat_list();
 
@@ -64,6 +69,8 @@ class Points extends CI_Controller {
         $this->TPLVAR['states'] = $this->point->get_states_list($item);
         $this->TPLVAR['user']   = $this->user->get_by_id($this->TPLVAR['point']->item_author);
         $this->TPLVAR['subcat'] = array();
+        $this->TPLVAR['item']   = $item;
+        $this->TPLVAR['category'] = $this->category->get_all();
 
         $this->point->view_counter($this->TPLVAR['point']->item_id, $this->TPLVAR['point']->item_views);
 
@@ -107,13 +114,16 @@ class Points extends CI_Controller {
         $page = ($this->uri->segment(3)) ? filter($this->uri->segment(3), 'int', 5) : 0;
 
         $this->load->model('media');
-        
+        $this->load->model('category');
+
         $this->pagination->initialize($config);
 
         $this->TPLVAR['title']  = 'Список всех проблем';
         $this->TPLVAR['points'] = $this->point->get_list(config_item('point_list_per_page'), $page, $param);
         $this->TPLVAR['pages']  = $this->pagination->create_links();
         $this->TPLVAR['author'] = $user_data;
+        
+        $this->TPLVAR['category'] = $this->category->get_all();
 
         $this->TPLVAR['count_user']    = $this->user->get_count();
         $this->TPLVAR['count_point']   = $this->point->get_count($param['statuses']);

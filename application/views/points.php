@@ -65,6 +65,20 @@ include_once VIEWPATH . 'sections/header.inc.php';
                     <?php endif; ?>
                 </div>
                 <?php if ( ! empty($points)):  ?>
+                <div class="points-filter">
+                    <select id="point-category" style="width: auto" name="item_category">
+                        <option>- категория обращений -</option>
+                        <?php foreach ($category as $val): ?>
+                        <option value="<?= $val->item_id ?>"><?= $val->item_name ?></option>
+                        <?php endforeach; ?>
+                    </select><select id="point-category" style="width: auto" name="item_category">
+                        <option>- статусы обращений -</option>
+                    </select><select id="point-category" style="width: auto" name="item_category">
+                        <option>- управляющая компания -</option>
+                    </select><select id="point-category" style="width: auto" name="item_category">
+                        <option>- сортировка результатов -</option>
+                    </select>
+                </div>
                 <div class="card-grid">
                     <?php foreach($points as $point): ?>
                     <?php include VIEWPATH . 'items/point.php'; ?>
@@ -78,6 +92,12 @@ include_once VIEWPATH . 'sections/header.inc.php';
             </section>
         </main>
         <?php include_once VIEWPATH . 'sections/footer.inc.php'; ?>
+        <script type="text/javascript" src="/assets/js/jquery.selectric.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('select').selectric();
+            });
+        </script>
     </body>
 </html>
 <?php

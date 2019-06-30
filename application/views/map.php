@@ -19,6 +19,15 @@ include_once VIEWPATH . 'sections/header.inc.php';
                     <a href="javascript:void(0)" title="" data-role="map-cancel-edit">НАЖМИТЕ СЮДА ДЛЯ ОТМЕНЫ ДОБАВЛЕНИЯ ОБРАЩЕНИЯ</a>
                 </div>
                 <div class="map-box box-content">
+                    <select>
+                        <option value="0">- управляющая компания -</option>
+                        <option>УК «ЦЖКУ»</option>
+                        <option>УК «ГУЖФ»</option>
+                        <option>УК «ПИК-Комфорт»</option>
+                        <option>УК «ЮНИ-ДОМ»</option>
+                        <option>УК «Текстильщики»</option>
+                    </select>
+                    <br>
                     <select id="point-status" name="point-status">
                         <option value="0">- все статусы обращений -</option>
                         <option value="15"<?= $status == 15 ? ' selected' : '' ?>>В работе</option>

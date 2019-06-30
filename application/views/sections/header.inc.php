@@ -66,9 +66,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <li>
                                         <a href="/points/list" <?= ($this->uri->segment(1) == 'points' && $this->uri->segment(2) == 'list' && ! $this->input->get('user')) ? 'class="active"' : NULL ?> title="">Обращения</a>
                                     </li>
+                                    <?php if ($this->auth->is_login()): ?>
                                     <li>
                                         <a href="/points/list/?user=<?= $user->user_id ?>" <?= ($this->uri->segment(1) == 'points' && $this->auth->get_user_id() == $this->input->get('user')) ? 'class="active"' : NULL ?> title="">Мои заявки</a>
                                     </li>
+                                    <?php endif; ?>
                                     <li>
                                         <a href="/uk/" <?= ($this->uri->segment(1) == 'uk') ? 'class="active"' : NULL ?> title="">Рейтинг УК</a>
                                     </li>

@@ -329,6 +329,17 @@ section .header p {
     background: rgb(245, 245, 245);
     margin-top: -50px;
 }
+.points-filter {
+    margin-bottom: 40px;
+}
+.points-filter > div {
+    display: inline-block;
+    width: 24.6%;
+    margin-right: 0.5%;
+}
+.points-filter > div:last-of-type {
+    margin-right: 0;
+}
 
 .fullmap {
     background: url(/assets/img/grayscalemap.jpg) 40% center no-repeat;
@@ -740,6 +751,27 @@ header .profile .name {
     font-size: .9em;
 }
 
+.demo-overlay, .demo-overlay2 {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(137, 137, 137, 0.49);
+    z-index: 9999;
+    top: 0;
+}
+.demo-modal, .demo-modal2 {
+    position: fixed;
+    z-index: 10000;
+    width: 100%;
+    top: 100px;
+}
+.demo-modal .box-content, .demo-modal2 .box-content  {
+    width: 600px;
+    margin: 0 auto;
+}
+.demo-modal2 .key-value-list .key, .demo-modal2 .key-value-list .value {
+    padding: 4px 0;
+}
 /** FOOTER **/
 footer {
     text-align: center;
@@ -1884,6 +1916,11 @@ ul.newsticker span {
     .logo {
         display: inline-block;
         float: right;
+    }
+    .points-filter > div {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 7px;
     }
 }
 @media (max-width: 500px) {

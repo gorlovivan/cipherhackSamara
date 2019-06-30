@@ -235,7 +235,7 @@ MapUtils.Methods = {
 
         MapUtils.Var.mapObject = L.map(MapUtils.Var.mapContainer, {
             center: (hashcenter ? hashcenter.split(',') : [latitude, longitude]),
-            zoom: (hashzoom ? hashzoom : 13),
+            zoom: (hashzoom ? hashzoom : 14),
             /*minZoom: 8, 
             maxZoom: 17,*/
         });

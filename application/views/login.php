@@ -25,7 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <h1 class="center uppercase">Авторизация</h1>
                 <p class="center">Портал обращений граждан</p>
                 <div class="box-content">
-                    <button type="button" class="btn btn-xs btn-primary full-width">Авторизация через ЕСИА</button>
+                    <button type="button" onclick="location.href='https://esia.gosuslugi.ru/idp/rlogin?cc=bp'" class="btn btn-xs btn-primary full-width">Авторизация через ЕСИА</button>
                     <div class="hr"></div>
                     <div class="center" style="margin-top: 30px;border-top: 1px solid #D7D8DB;padding-top: 20px;">Или войдите с помощью других сервисов</div>
                     <img src="/assets/img/social.png" alt="" style="width: 100%;" />
