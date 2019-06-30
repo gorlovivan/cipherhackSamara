@@ -122,6 +122,8 @@ $status = convert_status($point->item_status);
                         <script type="text/javascript" src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js" charset="utf-8"></script>
                         <script type="text/javascript" src="//yastatic.net/share2/share.js" charset="utf-8"></script>
                         <div class="ya-share2" data-services="vkontakte,facebook,odnoklassniki,gplus,twitter" data-counter=""></div>
+                        
+                        <span class="like-point"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <?= rand(0, 12); ?> Подтвердили</span>
                         <?php else: ?>
                         <br>
                         <a href="#" onclick="$('.demo-overlay,.demo-modal').show();" class="btn btn-primary"><i class="fa fa-refresh" aria-hidden="true"></i> Изменить статус</a> 

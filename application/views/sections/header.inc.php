@@ -40,24 +40,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <?= $user->user_lastname ?> <?= $user->user_firstname ?> <i class="fa fa-chevron-down" aria-hidden="true"></i>
                                 </a>
                             </li>
+                                    <li>
+                                        <a href="/points/list/?user=<?= $user->user_id ?>" <?= ($this->uri->segment(1) == 'points' && $this->auth->get_user_id() == $this->input->get('user')) ? 'class="active"' : NULL ?> title="">Мои заявки</a>
+                                    </li>
                             <?php else: ?>
                             <li><a href="/login/" rel="nofollow" title="Авторизироваться на сайте">Войти</a></li>
                             <?php endif; ?>
-                            <li><a href="/map">Карта города</a></li>
-                            <li><a href="/points/list">Обращения</a></li>
+                            <li>
+                                <a href="/" <?= $this->uri->segment(1) == 'map' ? 'class="active"' : NULL ?> title="">Районы</a>
+                            </li>
+                            <li>
+                                <a href="/points/list" <?= ($this->uri->segment(1) == 'points' && $this->uri->segment(2) == 'list' && ! $this->input->get('user')) ? 'class="active"' : NULL ?> title="">Обращения</a>
+                            </li>
+                                    <li>
+                                        <a href="/uk/" <?= ($this->uri->segment(1) == 'uk') ? 'class="active"' : NULL ?> title="">Рейтинг УК</a>
+                                    </li>
                             <?= $this->auth->is_login() == TRUE ? '<li class="menu-divider"></li><li><a href="/logout/">Выход</a></li>' : '' ?>
                         </ul>
                     </menu>
                     <div class="menu-overlay"></div>
                     <div class="row desktop-menu">
                         <div class="col-md-10">
-                            <h2>Сосед</h2>
-                            <!--
                             <a href="javascript:void(0)" class="nav-toggle" title=""><i class="fa fa-bars"></i></a>
                             <a href="/" class="logo" title="Портал обращений граждан">
-                                <img src="/assets/img/logo.png" alt="" />
+                                <img src="/assets/img/logo2.png" alt="" />
                             </a>
-                            -->
                             <nav class="main">
                                 <ul>
                                     <li>

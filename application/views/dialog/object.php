@@ -17,6 +17,7 @@ $status = convert_status($point->item_status);
 <div class="point-map-info">
     <a href="/points/id/<?= $point->item_id ?>" target="_blank" class="point-photo">
         <span class="alert alert-<?= $status['code'] ?>"><?= $status['text'] ?></span>
+        <span class="like"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <?= rand(0, 12); ?> Подтвердили</span>
         <?php
             $photo = $point->item_filename ? explode('.', $point->item_filename) : '/assets/img/nophoto.png';
             $photo = (is_array($photo) ? '/uploads/' . $point->item_id . '/' . $photo[0] . '_thumb.' . $photo[1] : '/assets/img/nophoto.png');

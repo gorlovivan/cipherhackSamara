@@ -17,6 +17,7 @@ $status = convert_status($point->item_status);
     <div class="card-item" data-name="<?= $point->item_id ?>">
         <div class="card-item-content">
             <div class="card-photo">
+                <span class="like"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <?= rand(0, 12); ?> Подтвердили</span>
                 <span class="alert alert-<?= $status['code'] ?>"><?= $status['text'] ?></span>
                 <a href="/points/id/<?= $point->item_id ?>" title="<?= $point->item_name ?>">
                     <?php

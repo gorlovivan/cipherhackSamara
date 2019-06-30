@@ -127,8 +127,8 @@ class Points extends CI_Controller {
 
         $this->TPLVAR['count_user']    = $this->user->get_count();
         $this->TPLVAR['count_point']   = $this->point->get_count($param['statuses']);
-        $this->TPLVAR['count_process'] = $this->point->get_count(array(STATUS_INWORK));
-        $this->TPLVAR['count_done']    = $this->point->get_count(array(STATUS_DONE));
+        $this->TPLVAR['count_process'] = $this->point->get_count(array('statuses' => array(STATUS_INWORK)));
+        $this->TPLVAR['count_done']    = $this->point->get_count(array('statuses' => array(STATUS_DONE)));
         $this->TPLVAR['count_photo']   = $this->media->get_count();
 
         $this->load->view('points', $this->TPLVAR);
